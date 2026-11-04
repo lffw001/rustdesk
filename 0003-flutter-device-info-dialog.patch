@@ -1,0 +1,291 @@
+diff --git a/flutter/lib/common/widgets/device_info_dialog.dart b/flutter/lib/common/widgets/device_info_dialog.dart
+new file mode 100644
+index 00000000..8c3bce61
+--- /dev/null
++++ b/flutter/lib/common/widgets/device_info_dialog.dart
+@@ -0,0 +1,150 @@
++import 'dart:convert';
++
++import 'package:flutter/material.dart';
++import 'package:flutter_hbb/common/shared_state.dart';
++import 'package:flutter_hbb/common/widgets/dialog.dart';
++import 'package:flutter_hbb/consts.dart';
++import 'package:flutter_hbb/models/peer_model.dart';
++import 'package:flutter_hbb/models/platform_model.dart';
++import 'package:get/get.dart';
++
++import '../../common.dart';
++
++/// "Device info" dialog: network details + system details for a peer.
++///
++/// [peerId] is the remote ID. [peer] (address book card) supplies the
++/// alias/hostname for the title and the online flag; [delay] (in-session
++/// toolbar) is the live network delay. The live connection type
++/// (direct/relay) comes from the global [ConnectionTypeState] while a
++/// session exists. System info is read from the per-peer cache written at
++/// connect time (see `handlePeerInfo` in `models/model.dart`), so offline
++/// peers show last-known data.
++Future<void> showDeviceInfoDialog(
++  BuildContext context, {
++  required String peerId,
++  Peer? peer,
++  String? delay,
++}) async {
++  Map<String, dynamic> sysinfo = {};
++  String cacheTime = '';
++  String cacheVersion = '';
++  try {
++    final raw = await bind.mainGetPeerOption(id: peerId, key: 'sysinfo_cache');
++    if (raw.isNotEmpty) {
++      final cache = jsonDecode(raw);
++      if (cache is Map<String, dynamic>) {
++        cacheTime = cache['time']?.toString() ?? '';
++        cacheVersion = cache['version']?.toString() ?? '';
++        final data = jsonDecode(cache['data']?.toString() ?? '');
++        if (data is Map<String, dynamic>) sysinfo = data;
++      }
++    }
++  } catch (_) {}
++  String lastSeen = '';
++  try {
++    lastSeen = await bind.mainGetPeerOption(id: peerId, key: 'last_seen');
++  } catch (_) {}
++
++  String? connType; // 'direct' / 'relay', only while a session is active
++  try {
++    if (Get.isRegistered<ConnectionType>(
++        tag: ConnectionTypeState.tag(peerId))) {
++      final ct = ConnectionTypeState.find(peerId);
++      if (ct.direct.value != kInvalidValueStr) {
++        connType = ct.direct.value == ConnectionType.strDirect
++            ? 'direct'
++            : 'relay';
++      }
++    }
++  } catch (_) {}
++
++  final titleName = peer?.alias.isNotEmpty == true
++      ? peer!.alias
++      : (peer?.hostname.isNotEmpty == true ? peer!.hostname : peerId);
++  final online = peer?.online ?? false;
++
++  String v(String key) => sysinfo[key]?.toString() ?? '--';
++
++  gFFI.dialogManager.show((setState, close, context) {
++    Widget section(String title) => Padding(
++          padding: const EdgeInsets.only(top: 12, bottom: 4),
++          child: Text(title,
++              style:
++                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
++        );
++
++    Widget row(String label, String value) => Padding(
++          padding: const EdgeInsets.symmetric(vertical: 3),
++          child: Row(
++            crossAxisAlignment: CrossAxisAlignment.start,
++            children: [
++              SizedBox(
++                  width: 96,
++                  child: Text(label,
++                      style: const TextStyle(color: Colors.grey))),
++              Expanded(child: SelectableText(value)),
++            ],
++          ),
++        );
++
++    final sysRows = <Widget>[];
++    if (sysinfo.isEmpty) {
++      sysRows.add(Padding(
++        padding: const EdgeInsets.symmetric(vertical: 3),
++        child: Text(online
++            ? translate('Controlled end too old')
++            : translate('No cached system info')),
++      ));
++    } else {
++      sysRows.addAll([
++        row('OS', v('os')),
++        row('CPU', v('cpu')),
++        row(translate('Memory'), v('memory')),
++        row(translate('Disk'), v('disks')),
++        row(translate('Hostname'), v('hostname')),
++        row(translate('Username'), v('username')),
++        row(translate('Client version'),
++            cacheVersion.isNotEmpty ? cacheVersion : '--'),
++        row(translate('Cached at'),
++            cacheTime.isNotEmpty ? _fmtTime(cacheTime) : '--'),
++      ]);
++    }
++
++    return CustomAlertDialog(
++      title: Text('${translate('Device info')} - $titleName'),
++      content: ConstrainedBox(
++        constraints: const BoxConstraints(maxWidth: 440),
++        child: SingleChildScrollView(
++          child: Column(
++            mainAxisSize: MainAxisSize.min,
++            crossAxisAlignment: CrossAxisAlignment.start,
++            children: [
++              section(translate('Network details')),
++              row(translate('Status'),
++                  translate(online ? 'Online' : 'Offline')),
++              row(translate('Last seen'),
++                  lastSeen.isEmpty ? translate('Never') : _fmtTime(lastSeen)),
++              row(
++                  translate('Connection'),
++                  connType == null
++                      ? '--'
++                      : translate(connType == 'direct' ? 'Direct' : 'Relay')),
++              row(translate('Delay'),
++                  delay?.isNotEmpty == true ? delay! : '--'),
++              section(translate('System details')),
++              ...sysRows,
++            ],
++          ),
++        ),
++      ),
++    );
++  });
++}
++
++String _fmtTime(String iso) {
++  final dt = DateTime.tryParse(iso);
++  if (dt == null) return iso;
++  final l = dt.toLocal();
++  String p(int n) => n.toString().padLeft(2, '0');
++  return '${l.year}-${p(l.month)}-${p(l.day)} ${p(l.hour)}:${p(l.minute)}';
++}
+diff --git a/flutter/lib/common/widgets/peer_card.dart b/flutter/lib/common/widgets/peer_card.dart
+index 86ce7c62..ed643fad 100644
+--- a/flutter/lib/common/widgets/peer_card.dart
++++ b/flutter/lib/common/widgets/peer_card.dart
+@@ -15,6 +15,7 @@ import '../../models/peer_model.dart';
+ import '../../models/platform_model.dart';
+ import '../../desktop/widgets/material_mod_popup_menu.dart' as mod_menu;
+ import '../../desktop/widgets/popup_menu.dart';
++import 'device_info_dialog.dart';
+ import 'dart:math' as math;
+ 
+ typedef PopupMenuEntryBuilder = Future<List<mod_menu.PopupMenuEntry<String>>>
+@@ -715,6 +716,21 @@ abstract class BasePeerCard extends StatelessWidget {
+     );
+   }
+ 
++  @protected
++  MenuEntryBase<String> _deviceInfoAction(BuildContext context, Peer peer) {
++    return MenuEntryButton<String>(
++      childBuilder: (TextStyle? style) => Text(
++        translate('Device info'),
++        style: style,
++      ),
++      proc: () {
++        showDeviceInfoDialog(context, peerId: peer.id, peer: peer);
++      },
++      padding: menuPadding,
++      dismissOnClicked: true,
++    );
++  }
++
+   /// Only available on Windows.
+   @protected
+   MenuEntryBase<String> _createShortCutAction(String id) {
+@@ -1189,6 +1205,7 @@ class AddressBookPeerCard extends BasePeerCard {
+       _transferFileAction(context),
+       _viewCameraAction(context),
+       _terminalAction(context),
++      _deviceInfoAction(context, peer),
+     ];
+ 
+     if (peer.platform == kPeerPlatformWindows) {
+diff --git a/flutter/lib/desktop/widgets/remote_toolbar.dart b/flutter/lib/desktop/widgets/remote_toolbar.dart
+index 9863f4e0..110c183a 100644
+--- a/flutter/lib/desktop/widgets/remote_toolbar.dart
++++ b/flutter/lib/desktop/widgets/remote_toolbar.dart
+@@ -4,6 +4,7 @@ import 'dart:async';
+ import 'package:flutter/material.dart';
+ import 'package:flutter/services.dart';
+ import 'package:flutter_hbb/common/widgets/audio_input.dart';
++import 'package:flutter_hbb/common/widgets/device_info_dialog.dart';
+ import 'package:flutter_hbb/common/widgets/dialog.dart';
+ import 'package:flutter_hbb/common/widgets/keyboard_shortcuts/display.dart';
+ import 'package:flutter_hbb/common/widgets/toolbar.dart';
+@@ -847,6 +848,7 @@ class _RemoteToolbarState extends State<RemoteToolbar> {
+       toolbarItems.add(_KeyboardMenu(id: widget.id, ffi: widget.ffi));
+     }
+     toolbarItems.add(_ChatMenu(id: widget.id, ffi: widget.ffi));
++    toolbarItems.add(_DeviceInfoMenu(id: widget.id, ffi: widget.ffi));
+     if (!isWeb) {
+       toolbarItems.add(_VoiceCallMenu(id: widget.id, ffi: widget.ffi));
+     }
+@@ -2999,6 +3001,27 @@ class _RecordMenu extends StatelessWidget {
+   }
+ }
+ 
++class _DeviceInfoMenu extends StatelessWidget {
++  final String id;
++  final FFI ffi;
++  const _DeviceInfoMenu({Key? key, required this.id, required this.ffi})
++      : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    return _IconMenuButton(
++      icon: const Icon(Icons.info_outline, color: Colors.white),
++      tooltip: 'Device info',
++      onPressed: () {
++        showDeviceInfoDialog(context,
++            peerId: id, delay: ffi.qualityMonitorModel.data.delay);
++      },
++      color: _ToolbarTheme.blueColor,
++      hoverColor: _ToolbarTheme.hoverBlueColor,
++    );
++  }
++}
++
+ class _CloseMenu extends StatelessWidget {
+   final String id;
+   final FFI ffi;
+diff --git a/flutter/lib/models/model.dart b/flutter/lib/models/model.dart
+index 20e71f10..10f1d6e8 100644
+--- a/flutter/lib/models/model.dart
++++ b/flutter/lib/models/model.dart
+@@ -1348,6 +1348,19 @@ class FfiModel with ChangeNotifier {
+     cachedPeerData.peerInfo = {...evt};
+     // Do not cache resolutions, because a new display connection have different resolutions.
+     cachedPeerData.peerInfo.remove('resolutions');
++    // Cache the controlled-end system info for the "Device info" dialog,
++    // so it is still available when the peer is offline.
++    final sysInfo = evt['system_info']?.toString() ?? '';
++    if (sysInfo.isNotEmpty) {
++      unawaited(bind.mainSetPeerOption(
++          id: peerId,
++          key: 'sysinfo_cache',
++          value: jsonEncode({
++            'time': DateTime.now().toIso8601String(),
++            'version': evt['version']?.toString() ?? '',
++            'data': sysInfo,
++          })));
++    }
+ 
+     // Recent peer is updated by handle_peer_info(ui_session_interface.rs) --> handle_peer_info(client.rs) --> save_config(client.rs)
+     bind.mainLoadRecentPeers();
+diff --git a/flutter/lib/models/peer_model.dart b/flutter/lib/models/peer_model.dart
+index 3171b373..cd378fe7 100644
+--- a/flutter/lib/models/peer_model.dart
++++ b/flutter/lib/models/peer_model.dart
+@@ -1,3 +1,4 @@
++import 'dart:async';
+ import 'dart:convert';
+ import 'package:flutter/foundation.dart';
+ import 'package:get/get.dart';
+@@ -235,6 +236,11 @@ class Peers extends ChangeNotifier {
+           if (peers[i].online) {
+             changedCount += 1;
+             peers[i].online = false;
++            // Remember when the peer was last seen for the "Device info" dialog.
++            unawaited(bind.mainSetPeerOption(
++                id: offline,
++                key: 'last_seen',
++                value: DateTime.now().toIso8601String()));
+           }
+         }
+       }

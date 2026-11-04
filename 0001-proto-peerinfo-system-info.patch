@@ -1,0 +1,15 @@
+diff --git a/libs/base/protos/message.proto b/libs/base/protos/message.proto
+index 5f920bc9..bcd65a9c 100644
+--- a/libs/base/protos/message.proto
++++ b/libs/base/protos/message.proto
+@@ -137,6 +137,10 @@ message PeerInfo {
+   // NOTE: Only support one-level dictionaries (for peer to update), and the key is of type string.
+   string platform_additions = 12;
+   WindowsSessions windows_sessions = 13;
++  // System info (cpu/memory/os/disks/hostname) collected by the controlled end
++  // via get_sysinfo(), JSON encoded. Shown in the "Device info" dialog.
++  // Empty when the controlled end is older than this patch.
++  string system_info = 8;
+ }
+ 
+ message WindowsSession {  
