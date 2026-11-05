@@ -1,0 +1,17 @@
+diff --git a/src/core_main.rs b/src/core_main.rs
+index 19a26703..067e1d88 100644
+--- a/src/core_main.rs
++++ b/src/core_main.rs
+@@ -102,7 +102,11 @@ pub fn core_main() -> Option<CoreMainAction> {
+         // We can assume that self service running means the server is also running on Windows.
+         #[cfg(target_os = "windows")]
+         let should_check_start_tray = crate::platform::is_self_service_running()
+-            && crate::platform::is_cur_exe_the_installed();
++            && crate::platform::is_cur_exe_the_installed()
++            // 便携模式没有安装服务，上面条件恒为假，--tray 进程从不拉起，
++            // 主窗口关闭后托盘里没有图标可点退出。便携时也拉起 --tray
++            //（check_process("--tray", true) 保证同一会话只起一个）。
++            || !crate::platform::is_cur_exe_the_installed();
+         if should_check_start_tray && !crate::check_process("--tray", true) {
+             #[cfg(target_os = "linux")]
+             hbb_common::allow_err!(crate::platform::check_autostart_config());

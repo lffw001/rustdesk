@@ -1,0 +1,122 @@
+diff --git a/flutter/lib/desktop/pages/desktop_setting_page.dart b/flutter/lib/desktop/pages/desktop_setting_page.dart
+index 730d7582..b005670b 100644
+--- a/flutter/lib/desktop/pages/desktop_setting_page.dart
++++ b/flutter/lib/desktop/pages/desktop_setting_page.dart
+@@ -613,6 +613,15 @@ class _GeneralState extends State<_General> {
+           'Capture screen using DirectX',
+           kOptionDirectxCapture,
+         ),
++      if (isWindows)
++        _OptionCheckBox(
++          context,
++          'Start on boot',
++          'start-on-boot',
++          optGetter: () => bind.mainGetStartOnBootSync(),
++          optSetter: (_, v) async =>
++              await bind.mainSetStartOnBoot(enable: v),
++        ),
+       if (!isWeb && !incomingOnly) ...[
+         _OptionCheckBox(
+           context,
+diff --git a/flutter/lib/web/bridge.dart b/flutter/lib/web/bridge.dart
+index bfde2985..e06a764e 100644
+--- a/flutter/lib/web/bridge.dart
++++ b/flutter/lib/web/bridge.dart
+@@ -833,6 +833,14 @@ class RustdeskImpl {
+     return Future.value();
+   }
+ 
++  bool mainGetStartOnBootSync({dynamic hint}) {
++    return false;
++  }
++
++  Future<void> mainSetStartOnBoot({required bool enable, dynamic hint}) {
++    return Future.value();
++  }
++
+   // get server settings
+   Future<String> mainGetOptions({dynamic hint}) {
+     return Future(() => mainGetOptionsSync());
+diff --git a/src/flutter_ffi.rs b/src/flutter_ffi.rs
+index 8473e38f..59955976 100644
+--- a/src/flutter_ffi.rs
++++ b/src/flutter_ffi.rs
+@@ -1086,6 +1086,24 @@ pub fn main_set_option(key: String, value: String) -> hbb_common::anyhow::Result
+     Ok(())
+ }
+ 
++pub fn main_get_start_on_boot_sync() -> SyncReturn<bool> {
++    #[cfg(target_os = "windows")]
++    {
++        SyncReturn(crate::platform::get_start_on_boot())
++    }
++    #[cfg(not(target_os = "windows"))]
++    {
++        SyncReturn(false)
++    }
++}
++
++pub fn main_set_start_on_boot(enable: bool) {
++    #[cfg(target_os = "windows")]
++    crate::platform::set_start_on_boot(enable);
++    #[cfg(not(target_os = "windows"))]
++    let _ = enable;
++}
++
+ pub fn main_get_options() -> String {
+     get_options()
+ }
+diff --git a/src/platform/windows.rs b/src/platform/windows.rs
+index 206a88d0..719b0d10 100644
+--- a/src/platform/windows.rs
++++ b/src/platform/windows.rs
+@@ -4695,6 +4695,49 @@ pub fn is_cur_exe_the_installed() -> bool {
+     path == exe.to_lowercase()
+ }
+ 
++const START_ON_BOOT_RUN_KEY: &str = r"Software\Microsoft\Windows\CurrentVersion\Run";
++
++// 开机自启动：写 HKCU 下的 Run 键，用户级，不用管理员权限。
++// 值名取程序名，值是带引号的当前 exe 全路径。
++pub fn get_start_on_boot() -> bool {
++    use winreg::{enums::*, RegKey};
++    let Ok(exe) = std::env::current_exe() else {
++        return false;
++    };
++    let Ok(run_key) =
++        RegKey::predef(HKEY_CURRENT_USER).open_subkey_with_flags(START_ON_BOOT_RUN_KEY, KEY_READ)
++    else {
++        return false;
++    };
++    // 只认指向当前 exe 的项；路径挪走或改名后旧项失效，开关显示关闭。
++    let Ok(val) = run_key.get_value::<String, _>(crate::get_app_name()) else {
++        return false;
++    };
++    val.contains(&exe.to_string_lossy().to_string())
++}
++
++pub fn set_start_on_boot(enable: bool) {
++    use winreg::{enums::*, RegKey};
++    if !enable && !get_start_on_boot() {
++        return;
++    }
++    let Ok((run_key, _)) =
++        RegKey::predef(HKEY_CURRENT_USER).create_subkey(START_ON_BOOT_RUN_KEY)
++    else {
++        return;
++    };
++    let name = crate::get_app_name();
++    if enable {
++        if let Ok(exe) = std::env::current_exe() {
++            let cmd = format!("\"{}\"", exe.to_string_lossy());
++            let _ = run_key.set_value(name, cmd.as_str());
++        }
++    } else {
++        // 只删指向自己的项，不动别人写的同名项。
++        let _ = run_key.delete_value(name);
++    }
++}
++
+ #[cfg(not(target_pointer_width = "64"))]
+ pub fn get_pids_with_first_arg_check_session<S1: AsRef<str>, S2: AsRef<str>>(
+     name: S1,
