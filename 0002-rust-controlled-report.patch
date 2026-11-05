@@ -1,11 +1,38 @@
 diff --git a/src/common.rs b/src/common.rs
-index 53831cc5..3e6a1f22 100644
+index 53831cc5..cfd8d926 100644
 --- a/src/common.rs
 +++ b/src/common.rs
-@@ -966,6 +966,20 @@ pub fn get_sysinfo() -> serde_json::Value {
+@@ -959,13 +959,47 @@ pub fn hostname() -> String {
+ }
+ 
+ #[inline]
++fn format_uptime(secs: u64) -> String {
++    let days = secs / 86400;
++    let hours = (secs % 86400) / 3600;
++    let mins = (secs % 3600) / 60;
++    if days > 0 {
++        format!("{days}天{hours}小时")
++    } else if hours > 0 {
++        format!("{hours}小时{mins}分")
++    } else {
++        format!("{mins}分钟")
++    }
++}
++
+ pub fn get_sysinfo() -> serde_json::Value {
+     use hbb_common::sysinfo::System;
+     let mut system = System::new();
+     system.refresh_memory();
      system.refresh_cpu();
      let memory = system.total_memory();
++    let memory_used = system.used_memory();
      let memory = (memory as f64 / 1024. / 1024. / 1024. * 100.).round() / 100.;
++    let memory_used = (memory_used as f64 / 1024. / 1024. / 1024. * 100.).round() / 100.;
++    let memory_pct = if memory > 0. {
++        (memory_used / memory * 100.).round()
++    } else {
++        0.
++    };
 +    let disks = {
 +        use hbb_common::sysinfo::Disks;
 +        let disks = Disks::new_with_refreshed_list();
@@ -23,11 +50,17 @@ index 53831cc5..3e6a1f22 100644
      let cpus = system.cpus();
      let cpu_name = cpus.first().map(|x| x.brand()).unwrap_or_default();
      let cpu_name = cpu_name.trim_end();
-@@ -994,6 +1008,7 @@ pub fn get_sysinfo() -> serde_json::Value {
-         "memory": format!("{memory}GB"),
+@@ -991,9 +1025,12 @@ pub fn get_sysinfo() -> serde_json::Value {
+     let mut out;
+     out = json!({
+         "cpu": format!("{cpu}{num_cpus}/{num_pcpus} cores"),
+-        "memory": format!("{memory}GB"),
++        "memory": format!("{memory}GB total, {memory_used}GB used ({memory_pct:.0}%)"),
          "os": os,
          "hostname": hostname,
 +        "disks": disks,
++        "arch": std::env::consts::ARCH,
++        "uptime": format_uptime(hbb_common::sysinfo::System::uptime()),
      });
      #[cfg(not(any(target_os = "android", target_os = "ios")))]
      {

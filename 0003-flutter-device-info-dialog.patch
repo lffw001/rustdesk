@@ -1,9 +1,9 @@
 diff --git a/flutter/lib/common/widgets/device_info_dialog.dart b/flutter/lib/common/widgets/device_info_dialog.dart
 new file mode 100644
-index 00000000..8c3bce61
+index 00000000..4cab068a
 --- /dev/null
 +++ b/flutter/lib/common/widgets/device_info_dialog.dart
-@@ -0,0 +1,150 @@
+@@ -0,0 +1,161 @@
 +import 'dart:convert';
 +
 +import 'package:flutter/material.dart';
@@ -67,7 +67,8 @@ index 00000000..8c3bce61
 +  final titleName = peer?.alias.isNotEmpty == true
 +      ? peer!.alias
 +      : (peer?.hostname.isNotEmpty == true ? peer!.hostname : peerId);
-+  final online = peer?.online ?? false;
++  // Toolbar (in-session) calls without a [peer]; a live delay implies online.
++  final online = peer?.online ?? delay?.isNotEmpty == true;
 +
 +  String v(String key) => sysinfo[key]?.toString() ?? '--';
 +
@@ -107,6 +108,8 @@ index 00000000..8c3bce61
 +        row('CPU', v('cpu')),
 +        row(translate('Memory'), v('memory')),
 +        row(translate('Disk'), v('disks')),
++        row(translate('Architecture'), v('arch')),
++        row(translate('Uptime'), v('uptime')),
 +        row(translate('Hostname'), v('hostname')),
 +        row(translate('Username'), v('username')),
 +        row(translate('Client version'),
@@ -126,23 +129,31 @@ index 00000000..8c3bce61
 +            crossAxisAlignment: CrossAxisAlignment.start,
 +            children: [
 +              section(translate('Network details')),
++              row('ID', peerId),
 +              row(translate('Status'),
 +                  translate(online ? 'Online' : 'Offline')),
 +              row(translate('Last seen'),
 +                  lastSeen.isEmpty ? translate('Never') : _fmtTime(lastSeen)),
 +              row(
 +                  translate('Connection'),
-+                  connType == null
-+                      ? '--'
-+                      : translate(connType == 'direct' ? 'Direct' : 'Relay')),
++                  online && connType != null
++                      ? translate(connType == 'direct' ? 'Direct' : 'Relay')
++                      : '--'),
 +              row(translate('Delay'),
-+                  delay?.isNotEmpty == true ? delay! : '--'),
++                  online && delay?.isNotEmpty == true ? delay! : '--'),
 +              section(translate('System details')),
 +              ...sysRows,
 +            ],
 +          ),
 +        ),
 +      ),
++      actions: [
++        TextButton(
++          onPressed: close,
++          child: Text(translate('Close')),
++        ),
++      ],
++      onCancel: close,
 +    );
 +  });
 +}
@@ -155,7 +166,7 @@ index 00000000..8c3bce61
 +  return '${l.year}-${p(l.month)}-${p(l.day)} ${p(l.hour)}:${p(l.minute)}';
 +}
 diff --git a/flutter/lib/common/widgets/peer_card.dart b/flutter/lib/common/widgets/peer_card.dart
-index 86ce7c62..ed643fad 100644
+index 86ce7c62..e0e25c45 100644
 --- a/flutter/lib/common/widgets/peer_card.dart
 +++ b/flutter/lib/common/widgets/peer_card.dart
 @@ -15,6 +15,7 @@ import '../../models/peer_model.dart';
@@ -188,7 +199,15 @@ index 86ce7c62..ed643fad 100644
    /// Only available on Windows.
    @protected
    MenuEntryBase<String> _createShortCutAction(String id) {
-@@ -1189,6 +1205,7 @@ class AddressBookPeerCard extends BasePeerCard {
+@@ -1005,6 +1021,7 @@ class RecentPeerCard extends BasePeerCard {
+       _transferFileAction(context),
+       _viewCameraAction(context),
+       _terminalAction(context),
++      _deviceInfoAction(context, peer),
+     ];
+ 
+     if (peer.platform == kPeerPlatformWindows) {
+@@ -1189,6 +1206,7 @@ class AddressBookPeerCard extends BasePeerCard {
        _transferFileAction(context),
        _viewCameraAction(context),
        _terminalAction(context),

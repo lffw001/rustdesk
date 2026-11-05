@@ -1,8 +1,8 @@
 diff --git a/src/lang/ar.rs b/src/lang/ar.rs
-index d37250df..8386e391 100644
+index d37250df..95e985ed 100644
 --- a/src/lang/ar.rs
 +++ b/src/lang/ar.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "مدة الثقة (بالأيام)"),
          ("Renew trust", "تجديد الثقة"),
          ("install-directory-not-empty-tip", "المجلد المحدد ليس فارغًا. قد يؤدي التثبيت إلى حذف البيانات الموجودة. يُنصح باختيار مجلد آخر."),
@@ -20,13 +20,17 @@ index d37250df..8386e391 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/az.rs b/src/lang/az.rs
-index 40018e5a..b0af9471 100644
+index 40018e5a..efbd2044 100644
 --- a/src/lang/az.rs
 +++ b/src/lang/az.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Etibar müddəti (gün)"),
          ("Renew trust", "Etibarı yenilə"),
          ("install-directory-not-empty-tip", "Seçilmiş qovluq boş deyil. Quraşdırma mövcud məlumatları silə bilər. Başqa qovluq seçməyiniz tövsiyə olunur."),
@@ -44,13 +48,17 @@ index 40018e5a..b0af9471 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/be.rs b/src/lang/be.rs
-index 77cad7c7..30b1a582 100644
+index 77cad7c7..45ff321d 100644
 --- a/src/lang/be.rs
 +++ b/src/lang/be.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Тэрмін даверу (у днях)"),
          ("Renew trust", "Падоўжыць давер"),
          ("install-directory-not-empty-tip", "Выбраная папка не пустая. Усталёўванне можа выдаліць наяўныя даныя. Лепш выберыце іншую папку."),
@@ -68,13 +76,17 @@ index 77cad7c7..30b1a582 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/bg.rs b/src/lang/bg.rs
-index efe791cb..9b3b703e 100644
+index efe791cb..bc7a2706 100644
 --- a/src/lang/bg.rs
 +++ b/src/lang/bg.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Срок на доверие (дни)"),
          ("Renew trust", "Подновяване на доверието"),
          ("install-directory-not-empty-tip", "Избраната папка не е празна. Инсталацията може да изтрие съществуващите данни. Препоръчително е да изберете друга папка."),
@@ -92,13 +104,17 @@ index efe791cb..9b3b703e 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ca.rs b/src/lang/ca.rs
-index f7d186d9..5e78f489 100644
+index f7d186d9..1aa455e7 100644
 --- a/src/lang/ca.rs
 +++ b/src/lang/ca.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durada de la confiança (dies)"),
          ("Renew trust", "Renova la confiança"),
          ("install-directory-not-empty-tip", "La carpeta seleccionada no és buida. La instal·lació pot suprimir les dades existents. Considereu triar una altra carpeta."),
@@ -116,13 +132,17 @@ index f7d186d9..5e78f489 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/cn.rs b/src/lang/cn.rs
-index 9f48c718..17dfdfce 100644
+index 9f48c718..c0932941 100644
 --- a/src/lang/cn.rs
 +++ b/src/lang/cn.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "信任有效期（天）"),
          ("Renew trust", "延长信任有效期"),
          ("install-directory-not-empty-tip", "所选文件夹不为空。安装可能删除现有数据。建议选择其他文件夹。"),
@@ -140,13 +160,17 @@ index 9f48c718..17dfdfce 100644
 +        ("Controlled end too old", "被控端版本过低，请升级被控端"),
 +        ("Memory", "内存"),
 +        ("Hostname", "主机名"),
++        ("Online", "在线"),
++        ("Offline", "离线"),
++        ("Uptime", "运行时长"),
++        ("Architecture", "架构"),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/cs.rs b/src/lang/cs.rs
-index 37871d8c..9026bad1 100644
+index 37871d8c..4b43887e 100644
 --- a/src/lang/cs.rs
 +++ b/src/lang/cs.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Doba důvěry (dny)"),
          ("Renew trust", "Obnovit důvěru"),
          ("install-directory-not-empty-tip", "Vybraná složka není prázdná. Instalace může odstranit existující data. Zvažte výběr jiné složky."),
@@ -164,13 +188,17 @@ index 37871d8c..9026bad1 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/da.rs b/src/lang/da.rs
-index f17b21d0..49566b5a 100644
+index f17b21d0..47ab4b97 100644
 --- a/src/lang/da.rs
 +++ b/src/lang/da.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Tillidsperiode (dage)"),
          ("Renew trust", "Forny tillid"),
          ("install-directory-not-empty-tip", "Den valgte mappe er ikke tom. Installationen kan slette eksisterende data. Overvej at vælge en anden mappe."),
@@ -188,13 +216,17 @@ index f17b21d0..49566b5a 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/de.rs b/src/lang/de.rs
-index e71e52b0..f9ee6160 100644
+index e71e52b0..a6d08679 100644
 --- a/src/lang/de.rs
 +++ b/src/lang/de.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Vertrauensdauer (Tage)"),
          ("Renew trust", "Vertrauen erneuern"),
          ("install-directory-not-empty-tip", "Der ausgewählte Ordner ist nicht leer. Bei der Installation können vorhandene Daten gelöscht werden. Erwägen Sie, einen anderen Ordner auszuwählen."),
@@ -212,13 +244,17 @@ index e71e52b0..f9ee6160 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/el.rs b/src/lang/el.rs
-index ca0572d7..2263173f 100644
+index ca0572d7..80d59127 100644
 --- a/src/lang/el.rs
 +++ b/src/lang/el.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Διάρκεια εμπιστοσύνης (ημέρες)"),
          ("Renew trust", "Ανανέωση εμπιστοσύνης"),
          ("install-directory-not-empty-tip", "Ο επιλεγμένος φάκελος δεν είναι κενός. Η εγκατάσταση ενδέχεται να διαγράψει υπάρχοντα δεδομένα. Εξετάστε το ενδεχόμενο να επιλέξετε διαφορετικό φάκελο."),
@@ -236,13 +272,17 @@ index ca0572d7..2263173f 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/en.rs b/src/lang/en.rs
-index 72b66617..4b39b2af 100644
+index 72b66617..eed1aea9 100644
 --- a/src/lang/en.rs
 +++ b/src/lang/en.rs
-@@ -292,5 +292,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -292,5 +292,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("api_server_empty_tip", "With API Server empty, your custom server defaults to HTTP. Contact your administrator to enable HTTPS."),
          ("android-logs-folder-tip", "Choose Android → media to store log files."),
          ("install-directory-not-empty-tip", "The selected folder is not empty. Installation may delete existing data. Consider choosing a different folder."),
@@ -260,13 +300,17 @@ index 72b66617..4b39b2af 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/eo.rs b/src/lang/eo.rs
-index 98066723..df456ffa 100644
+index 98066723..39ae25c5 100644
 --- a/src/lang/eo.rs
 +++ b/src/lang/eo.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Daŭro de fido (tagoj)"),
          ("Renew trust", "Renovigi fidon"),
          ("install-directory-not-empty-tip", "La elektita dosierujo ne estas malplena. La instalado povas forigi ekzistantajn datumojn. Konsideru elekti alian dosierujon."),
@@ -284,13 +328,17 @@ index 98066723..df456ffa 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/es.rs b/src/lang/es.rs
-index 7d074223..e5c6b5be 100644
+index 7d074223..0bf44343 100644
 --- a/src/lang/es.rs
 +++ b/src/lang/es.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Duración de la confianza (días)"),
          ("Renew trust", "Renovar confianza"),
          ("install-directory-not-empty-tip", "La carpeta seleccionada no está vacía. La instalación puede eliminar los datos existentes. Considera elegir otra carpeta."),
@@ -308,13 +356,17 @@ index 7d074223..e5c6b5be 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/et.rs b/src/lang/et.rs
-index da5e8ecb..dafe363b 100644
+index da5e8ecb..052bfa78 100644
 --- a/src/lang/et.rs
 +++ b/src/lang/et.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Usalduse kestus (päevades)"),
          ("Renew trust", "Uuenda usaldust"),
          ("install-directory-not-empty-tip", "Valitud kaust ei ole tühi. Paigaldamine võib olemasolevad andmed kustutada. Kaalu teise kausta valimist."),
@@ -332,13 +384,17 @@ index da5e8ecb..dafe363b 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/eu.rs b/src/lang/eu.rs
-index 23a2adc2..40255202 100644
+index 23a2adc2..716eebad 100644
 --- a/src/lang/eu.rs
 +++ b/src/lang/eu.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Konfiantzaren iraupena (egunak)"),
          ("Renew trust", "Berritu konfiantza"),
          ("install-directory-not-empty-tip", "Hautatutako karpeta ez dago hutsik. Instalazioak lehendik dauden datuak ezaba ditzake. Beste karpeta bat aukeratzea gomendatzen da."),
@@ -356,13 +412,17 @@ index 23a2adc2..40255202 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/fa.rs b/src/lang/fa.rs
-index 48b56e94..c0f3871f 100644
+index 48b56e94..c3321257 100644
 --- a/src/lang/fa.rs
 +++ b/src/lang/fa.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "مدت اعتماد (روز)"),
          ("Renew trust", "تمدید اعتماد"),
          ("install-directory-not-empty-tip", "پوشه انتخاب‌شده خالی نیست. نصب ممکن است داده‌های موجود را حذف کند. بهتر است پوشه دیگری انتخاب کنید."),
@@ -380,13 +440,17 @@ index 48b56e94..c0f3871f 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/fi.rs b/src/lang/fi.rs
-index fa132eed..12bc685b 100644
+index fa132eed..d03f2da5 100644
 --- a/src/lang/fi.rs
 +++ b/src/lang/fi.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Luottamuksen kesto (päivää)"),
          ("Renew trust", "Jatka luottamusta"),
          ("install-directory-not-empty-tip", "Valittu kansio ei ole tyhjä. Asennus voi poistaa olemassa olevia tietoja. Harkitse toisen kansion valitsemista."),
@@ -404,13 +468,17 @@ index fa132eed..12bc685b 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/fr.rs b/src/lang/fr.rs
-index 3bccf1a4..eec4244c 100644
+index 3bccf1a4..9da9aa51 100644
 --- a/src/lang/fr.rs
 +++ b/src/lang/fr.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durée de confiance (jours)"),
          ("Renew trust", "Renouveler la confiance"),
          ("install-directory-not-empty-tip", "Le dossier sélectionné n’est pas vide. L’installation peut supprimer des données existantes. Envisagez de choisir un autre dossier."),
@@ -428,13 +496,17 @@ index 3bccf1a4..eec4244c 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ge.rs b/src/lang/ge.rs
-index 6b7c6049..9ed2bc43 100644
+index 6b7c6049..008e6d35 100644
 --- a/src/lang/ge.rs
 +++ b/src/lang/ge.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "ნდობის ხანგრძლივობა (დღე)"),
          ("Renew trust", "ნდობის განახლება"),
          ("install-directory-not-empty-tip", "არჩეული საქაღალდე ცარიელი არ არის. ინსტალაციამ შეიძლება წაშალოს არსებული მონაცემები. რეკომენდებულია სხვა საქაღალდის არჩევა."),
@@ -452,13 +524,17 @@ index 6b7c6049..9ed2bc43 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/gl.rs b/src/lang/gl.rs
-index da46ff5d..29a4de0a 100644
+index da46ff5d..5b8aed6f 100644
 --- a/src/lang/gl.rs
 +++ b/src/lang/gl.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Duración da confianza (días)"),
          ("Renew trust", "Renovar a confianza"),
          ("install-directory-not-empty-tip", "O cartafol seleccionado non está baleiro. A instalación pode eliminar os datos existentes. Considera escoller outro cartafol."),
@@ -476,13 +552,17 @@ index da46ff5d..29a4de0a 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/gu.rs b/src/lang/gu.rs
-index 5ff2d4f8..13ef3f74 100644
+index 5ff2d4f8..cc42a405 100644
 --- a/src/lang/gu.rs
 +++ b/src/lang/gu.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "વિશ્વાસ અવધિ (દિવસો)"),
          ("Renew trust", "વિશ્વાસ નવીકરણ કરો"),
          ("install-directory-not-empty-tip", "પસંદ કરેલ ફોલ્ડર ખાલી નથી. ઇન્સ્ટોલેશન હાલનો ડેટા કાઢી નાખી શકે છે. બીજું ફોલ્ડર પસંદ કરવાનું વિચારો."),
@@ -500,13 +580,17 @@ index 5ff2d4f8..13ef3f74 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/he.rs b/src/lang/he.rs
-index 666cd22b..d1eb6ede 100644
+index 666cd22b..dd65a10e 100644
 --- a/src/lang/he.rs
 +++ b/src/lang/he.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "משך האמון (ימים)"),
          ("Renew trust", "חידוש אמון"),
          ("install-directory-not-empty-tip", "התיקייה שנבחרה אינה ריקה. ההתקנה עלולה למחוק נתונים קיימים. מומלץ לבחור תיקייה אחרת."),
@@ -524,13 +608,17 @@ index 666cd22b..d1eb6ede 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/hi.rs b/src/lang/hi.rs
-index c843867f..77f6f71e 100644
+index c843867f..d6ccb635 100644
 --- a/src/lang/hi.rs
 +++ b/src/lang/hi.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "विश्वास अवधि (दिन)"),
          ("Renew trust", "विश्वास नवीनीकृत करें"),
          ("install-directory-not-empty-tip", "चयनित फ़ोल्डर खाली नहीं है। इंस्टॉलेशन से मौजूदा डेटा हट सकता है। कोई दूसरा फ़ोल्डर चुनने पर विचार करें।"),
@@ -548,13 +636,17 @@ index c843867f..77f6f71e 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/hr.rs b/src/lang/hr.rs
-index 38797fec..72f56b06 100644
+index 38797fec..18848f3b 100644
 --- a/src/lang/hr.rs
 +++ b/src/lang/hr.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Trajanje povjerenja (dani)"),
          ("Renew trust", "Obnovi povjerenje"),
          ("install-directory-not-empty-tip", "Odabrana mapa nije prazna. Instalacija može izbrisati postojeće podatke. Razmislite o odabiru druge mape."),
@@ -572,13 +664,17 @@ index 38797fec..72f56b06 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/hu.rs b/src/lang/hu.rs
-index e0ed9784..d1b9b355 100644
+index e0ed9784..c0e593bf 100644
 --- a/src/lang/hu.rs
 +++ b/src/lang/hu.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Megbízhatóság időtartama (nap)"),
          ("Renew trust", "Megbízhatóság megújítása"),
          ("install-directory-not-empty-tip", "A kiválasztott mappa nem üres. A telepítés törölheti a meglévő adatokat. Fontolja meg egy másik mappa kiválasztását."),
@@ -596,13 +692,17 @@ index e0ed9784..d1b9b355 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/id.rs b/src/lang/id.rs
-index a128d313..a00b6f36 100644
+index a128d313..1dea6f17 100644
 --- a/src/lang/id.rs
 +++ b/src/lang/id.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durasi kepercayaan (hari)"),
          ("Renew trust", "Perbarui kepercayaan"),
          ("install-directory-not-empty-tip", "Folder yang dipilih tidak kosong. Instalasi dapat menghapus data yang ada. Pertimbangkan untuk memilih folder lain."),
@@ -620,13 +720,17 @@ index a128d313..a00b6f36 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/it.rs b/src/lang/it.rs
-index f05500b0..49094061 100644
+index f05500b0..2d9cd0d9 100644
 --- a/src/lang/it.rs
 +++ b/src/lang/it.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durata attendibilità (giorni)"),
          ("Renew trust", "Rinnova attendibilità"),
          ("install-directory-not-empty-tip", "La cartella selezionata non è vuota. L'installazione potrebbe eliminare i dati esistenti. Valuta la possibilità di scegliere una cartella diversa."),
@@ -644,13 +748,17 @@ index f05500b0..49094061 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ja.rs b/src/lang/ja.rs
-index 1cb2a8c5..0e262866 100644
+index 1cb2a8c5..a436c594 100644
 --- a/src/lang/ja.rs
 +++ b/src/lang/ja.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "信頼期間 (日)"),
          ("Renew trust", "信頼を更新"),
          ("install-directory-not-empty-tip", "選択したフォルダーは空ではありません。インストールにより既存のデータが削除される可能性があります。別のフォルダーを選択することをおすすめします。"),
@@ -668,13 +776,17 @@ index 1cb2a8c5..0e262866 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ko.rs b/src/lang/ko.rs
-index 3a7fa867..7248a622 100644
+index 3a7fa867..9be3cd23 100644
 --- a/src/lang/ko.rs
 +++ b/src/lang/ko.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "신뢰 유지 기간 (일)"),
          ("Renew trust", "신뢰 갱신"),
          ("install-directory-not-empty-tip", "선택한 폴더가 비어 있지 않습니다. 설치 시 기존 데이터가 삭제될 수 있습니다. 다른 폴더를 선택하는 것이 좋습니다."),
@@ -692,13 +804,17 @@ index 3a7fa867..7248a622 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/kz.rs b/src/lang/kz.rs
-index d46a7940..5b55b090 100644
+index d46a7940..c8bd041e 100644
 --- a/src/lang/kz.rs
 +++ b/src/lang/kz.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Сенім мерзімі (күн)"),
          ("Renew trust", "Сенімді жаңарту"),
          ("install-directory-not-empty-tip", "Таңдалған бума бос емес. Орнату бар деректерді жоюы мүмкін. Басқа буманы таңдаған жөн."),
@@ -716,13 +832,17 @@ index d46a7940..5b55b090 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/lt.rs b/src/lang/lt.rs
-index c07d78ec..1d81e202 100644
+index c07d78ec..f6e227c8 100644
 --- a/src/lang/lt.rs
 +++ b/src/lang/lt.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Pasitikėjimo trukmė (dienomis)"),
          ("Renew trust", "Atnaujinti pasitikėjimą"),
          ("install-directory-not-empty-tip", "Pasirinktas aplankas nėra tuščias. Diegimas gali ištrinti esamus duomenis. Apsvarstykite galimybę pasirinkti kitą aplanką."),
@@ -740,13 +860,17 @@ index c07d78ec..1d81e202 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/lv.rs b/src/lang/lv.rs
-index 12076fd9..b41e674d 100644
+index 12076fd9..adce8923 100644
 --- a/src/lang/lv.rs
 +++ b/src/lang/lv.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Uzticēšanās ilgums (dienas)"),
          ("Renew trust", "Atjaunot uzticēšanos"),
          ("install-directory-not-empty-tip", "Izvēlētā mape nav tukša. Instalēšana var izdzēst esošos datus. Apsveriet iespēju izvēlēties citu mapi."),
@@ -764,13 +888,17 @@ index 12076fd9..b41e674d 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ml.rs b/src/lang/ml.rs
-index 8944a714..681e535e 100644
+index 8944a714..b3bfd30f 100644
 --- a/src/lang/ml.rs
 +++ b/src/lang/ml.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "വിശ്വാസ കാലാവധി (ദിവസം)"),
          ("Renew trust", "വിശ്വാസം പുതുക്കുക"),
          ("install-directory-not-empty-tip", "തിരഞ്ഞെടുത്ത ഫോൾഡർ ശൂന്യമല്ല. ഇൻസ്റ്റാളേഷൻ നിലവിലുള്ള ഡാറ്റ ഇല്ലാതാക്കിയേക്കാം. മറ്റൊരു ഫോൾഡർ തിരഞ്ഞെടുക്കുന്നത് പരിഗണിക്കുക."),
@@ -788,13 +916,17 @@ index 8944a714..681e535e 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/nb.rs b/src/lang/nb.rs
-index f1a00cbe..6b6414ba 100644
+index f1a00cbe..2992da8b 100644
 --- a/src/lang/nb.rs
 +++ b/src/lang/nb.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Klareringsperiode (dager)"),
          ("Renew trust", "Forny klarering"),
          ("install-directory-not-empty-tip", "Den valgte mappen er ikke tom. Installasjonen kan slette eksisterende data. Vurder å velge en annen mappe."),
@@ -812,13 +944,17 @@ index f1a00cbe..6b6414ba 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/nl.rs b/src/lang/nl.rs
-index d398e962..9fe703a0 100644
+index d398e962..e32ede74 100644
 --- a/src/lang/nl.rs
 +++ b/src/lang/nl.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Vertrouwensperiode (dagen)"),
          ("Renew trust", "Vertrouwen hernieuwen"),
          ("install-directory-not-empty-tip", "De geselecteerde map is niet leeg. De installatie kan bestaande gegevens verwijderen. Overweeg een andere map te kiezen."),
@@ -836,13 +972,17 @@ index d398e962..9fe703a0 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/pl.rs b/src/lang/pl.rs
-index bf54af50..596096f3 100644
+index bf54af50..eb6161a9 100644
 --- a/src/lang/pl.rs
 +++ b/src/lang/pl.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Okres zaufania (dni)"),
          ("Renew trust", "Odnów zaufanie"),
          ("install-directory-not-empty-tip", "Wybrany folder nie jest pusty. Instalacja może usunąć istniejące dane. Rozważ wybranie innego folderu."),
@@ -860,13 +1000,17 @@ index bf54af50..596096f3 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/pt_BR.rs b/src/lang/pt_BR.rs
-index 3a9412f2..edd0a5f2 100644
+index 3a9412f2..4491200f 100644
 --- a/src/lang/pt_BR.rs
 +++ b/src/lang/pt_BR.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Duração da confiança (dias)"),
          ("Renew trust", "Renovar confiança"),
          ("install-directory-not-empty-tip", "A pasta selecionada não está vazia. A instalação pode excluir dados existentes. Considere escolher outra pasta."),
@@ -884,13 +1028,17 @@ index 3a9412f2..edd0a5f2 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/pt_PT.rs b/src/lang/pt_PT.rs
-index 3386d9e4..9720962b 100644
+index 3386d9e4..b18efd4f 100644
 --- a/src/lang/pt_PT.rs
 +++ b/src/lang/pt_PT.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Duração da confiança (dias)"),
          ("Renew trust", "Renovar confiança"),
          ("install-directory-not-empty-tip", "A pasta selecionada não está vazia. A instalação pode eliminar dados existentes. Considere escolher outra pasta."),
@@ -908,13 +1056,17 @@ index 3386d9e4..9720962b 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ro.rs b/src/lang/ro.rs
-index cd6fa5bc..4452d52e 100644
+index cd6fa5bc..877a63c2 100644
 --- a/src/lang/ro.rs
 +++ b/src/lang/ro.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durata încrederii (zile)"),
          ("Renew trust", "Reînnoiește încrederea"),
          ("install-directory-not-empty-tip", "Folderul selectat nu este gol. Instalarea poate șterge datele existente. Ia în considerare alegerea altui folder."),
@@ -932,13 +1084,17 @@ index cd6fa5bc..4452d52e 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ru.rs b/src/lang/ru.rs
-index 771bb620..4c13bb40 100644
+index 771bb620..dc812e2c 100644
 --- a/src/lang/ru.rs
 +++ b/src/lang/ru.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Срок доверия (в днях)"),
          ("Renew trust", "Продлить доверие"),
          ("install-directory-not-empty-tip", "Выбранная папка не пуста. При установке существующие данные могут быть удалены. Рекомендуется выбрать другую папку."),
@@ -956,13 +1112,17 @@ index 771bb620..4c13bb40 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sc.rs b/src/lang/sc.rs
-index ced590ed..061b8a51 100644
+index ced590ed..c818bb62 100644
 --- a/src/lang/sc.rs
 +++ b/src/lang/sc.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Durada de sa fidùtzia (dies)"),
          ("Renew trust", "Annoa sa fidùtzia"),
          ("install-directory-not-empty-tip", "Sa cartella seletzionada non est bòida. S'installatzione diat pòdere iscantzellare sos datos chi bi sunt. Ti cussigiamus de isseberare un'àtera cartella."),
@@ -980,13 +1140,17 @@ index ced590ed..061b8a51 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sk.rs b/src/lang/sk.rs
-index 1fa81c6a..93251aa1 100644
+index 1fa81c6a..ad002e4c 100644
 --- a/src/lang/sk.rs
 +++ b/src/lang/sk.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Doba dôvery (dni)"),
          ("Renew trust", "Obnoviť dôveru"),
          ("install-directory-not-empty-tip", "Vybraný priečinok nie je prázdny. Inštalácia môže odstrániť existujúce údaje. Zvážte výber iného priečinka."),
@@ -1004,13 +1168,17 @@ index 1fa81c6a..93251aa1 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sl.rs b/src/lang/sl.rs
-index 004f3226..9a036240 100644
+index 004f3226..266694c3 100644
 --- a/src/lang/sl.rs
 +++ b/src/lang/sl.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Trajanje zaupanja (dni)"),
          ("Renew trust", "Obnovi zaupanje"),
          ("install-directory-not-empty-tip", "Izbrana mapa ni prazna. Namestitev lahko izbriše obstoječe podatke. Razmislite o izbiri druge mape."),
@@ -1028,13 +1196,17 @@ index 004f3226..9a036240 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sq.rs b/src/lang/sq.rs
-index cda45767..2b72be9f 100644
+index cda45767..85e21b62 100644
 --- a/src/lang/sq.rs
 +++ b/src/lang/sq.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Kohëzgjatja e besimit (ditë)"),
          ("Renew trust", "Rinovo besimin"),
          ("install-directory-not-empty-tip", "Dosja e zgjedhur nuk është bosh. Instalimi mund të fshijë të dhënat ekzistuese. Konsideroni të zgjidhni një dosje tjetër."),
@@ -1052,13 +1224,17 @@ index cda45767..2b72be9f 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sr.rs b/src/lang/sr.rs
-index 7436d095..8a019ef1 100644
+index 7436d095..03ba3a01 100644
 --- a/src/lang/sr.rs
 +++ b/src/lang/sr.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Trajanje poverenja (dani)"),
          ("Renew trust", "Obnovi poverenje"),
          ("install-directory-not-empty-tip", "Izabrani direktorijum nije prazan. Instalacija može da obriše postojeće podatke. Razmislite o izboru drugog direktorijuma."),
@@ -1076,13 +1252,17 @@ index 7436d095..8a019ef1 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/sv.rs b/src/lang/sv.rs
-index 47a8a24b..fc8b4e1f 100644
+index 47a8a24b..c7d7738e 100644
 --- a/src/lang/sv.rs
 +++ b/src/lang/sv.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Förtroendeperiod (dagar)"),
          ("Renew trust", "Förnya förtroende"),
          ("install-directory-not-empty-tip", "Den valda mappen är inte tom. Installationen kan radera befintliga data. Överväg att välja en annan mapp."),
@@ -1100,13 +1280,17 @@ index 47a8a24b..fc8b4e1f 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ta.rs b/src/lang/ta.rs
-index d49385fd..87eb4fe9 100644
+index d49385fd..4d42cc6f 100644
 --- a/src/lang/ta.rs
 +++ b/src/lang/ta.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "நம்பிக்கைக் காலம் (நாட்கள்)"),
          ("Renew trust", "நம்பிக்கையைப் புதுப்பி"),
          ("install-directory-not-empty-tip", "தேர்ந்தெடுக்கப்பட்ட கோப்புறை காலியாக இல்லை. நிறுவல் ஏற்கனவே உள்ள தரவை நீக்கக்கூடும். வேறு கோப்புறையைத் தேர்ந்தெடுப்பது நல்லது."),
@@ -1124,13 +1308,17 @@ index d49385fd..87eb4fe9 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/template.rs b/src/lang/template.rs
-index 567d694a..24ca0f22 100644
+index 567d694a..5853d6c5 100644
 --- a/src/lang/template.rs
 +++ b/src/lang/template.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", ""),
          ("Renew trust", ""),
          ("install-directory-not-empty-tip", ""),
@@ -1148,13 +1336,17 @@ index 567d694a..24ca0f22 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/th.rs b/src/lang/th.rs
-index bb8e2210..e6d10291 100644
+index bb8e2210..b529e984 100644
 --- a/src/lang/th.rs
 +++ b/src/lang/th.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "ระยะเวลาการเชื่อถือ (วัน)"),
          ("Renew trust", "ต่ออายุการเชื่อถือ"),
          ("install-directory-not-empty-tip", "โฟลเดอร์ที่เลือกไม่ว่างเปล่า การติดตั้งอาจลบข้อมูลที่มีอยู่ ควรพิจารณาเลือกโฟลเดอร์อื่น"),
@@ -1172,13 +1364,17 @@ index bb8e2210..e6d10291 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/tr.rs b/src/lang/tr.rs
-index eb2df49c..dd4065fd 100644
+index eb2df49c..fb056ec6 100644
 --- a/src/lang/tr.rs
 +++ b/src/lang/tr.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Güven süresi (gün)"),
          ("Renew trust", "Güveni yenile"),
          ("install-directory-not-empty-tip", "Seçilen klasör boş değil. Kurulum mevcut verileri silebilir. Farklı bir klasör seçmeyi düşünün."),
@@ -1196,13 +1392,17 @@ index eb2df49c..dd4065fd 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/tw.rs b/src/lang/tw.rs
-index a0f923dd..3b1b2924 100644
+index a0f923dd..62c60ddd 100644
 --- a/src/lang/tw.rs
 +++ b/src/lang/tw.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "信任有效期（天）"),
          ("Renew trust", "延長信任期限"),
          ("install-directory-not-empty-tip", "所選資料夾不是空的。安裝可能刪除現有資料。建議選擇其他資料夾。"),
@@ -1220,13 +1420,17 @@ index a0f923dd..3b1b2924 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/uk.rs b/src/lang/uk.rs
-index d37376e3..6d6e456b 100644
+index d37376e3..c786c247 100644
 --- a/src/lang/uk.rs
 +++ b/src/lang/uk.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Термін довіри (у днях)"),
          ("Renew trust", "Подовжити довіру"),
          ("install-directory-not-empty-tip", "Вибрана тека не порожня. Встановлення може видалити наявні дані. Радимо вибрати іншу теку."),
@@ -1244,13 +1448,17 @@ index d37376e3..6d6e456b 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/ur.rs b/src/lang/ur.rs
-index 11e81d90..9500bbb3 100644
+index 11e81d90..b743807a 100644
 --- a/src/lang/ur.rs
 +++ b/src/lang/ur.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "اعتماد کی مدت (دن)"),
          ("Renew trust", "اعتماد کی تجدید کریں"),
          ("install-directory-not-empty-tip", "منتخب فولڈر خالی نہیں ہے۔ انسٹالیشن موجودہ ڈیٹا کو حذف کر سکتی ہے۔ کوئی دوسرا فولڈر منتخب کرنے پر غور کریں۔"),
@@ -1268,13 +1476,17 @@ index 11e81d90..9500bbb3 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }
 diff --git a/src/lang/vi.rs b/src/lang/vi.rs
-index b7eecab5..7ef438de 100644
+index b7eecab5..5d3d5e9b 100644
 --- a/src/lang/vi.rs
 +++ b/src/lang/vi.rs
-@@ -824,5 +824,19 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
+@@ -824,5 +824,23 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
          ("Trust duration (days)", "Thời hạn tin cậy (ngày)"),
          ("Renew trust", "Gia hạn tin cậy"),
          ("install-directory-not-empty-tip", "Thư mục đã chọn không trống. Quá trình cài đặt có thể xóa dữ liệu hiện có. Hãy cân nhắc chọn một thư mục khác."),
@@ -1292,5 +1504,9 @@ index b7eecab5..7ef438de 100644
 +        ("Controlled end too old", ""),
 +        ("Memory", ""),
 +        ("Hostname", ""),
++        ("Online", ""),
++        ("Offline", ""),
++        ("Uptime", ""),
++        ("Architecture", ""),
      ].iter().cloned().collect();
  }

@@ -1,0 +1,21 @@
+diff --git a/flutter/lib/desktop/pages/desktop_home_page.dart b/flutter/lib/desktop/pages/desktop_home_page.dart
+index 1c7ae3d9..c0808cfe 100644
+--- a/flutter/lib/desktop/pages/desktop_home_page.dart
++++ b/flutter/lib/desktop/pages/desktop_home_page.dart
+@@ -459,14 +459,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
+     }
+ 
+     if (isWindows && !bind.isDisableInstallation()) {
+-      if (!bind.mainIsInstalled()) {
+-        return buildInstallCard(
+-            "", bind.isOutgoingOnly() ? "" : "install_tip", "Install",
+-            () async {
+-          await rustDeskWinManager.closeAllSubWindows();
+-          bind.mainGotoInstall();
+-        });
+-      } else if (bind.mainIsInstalledLowerVersion()) {
++      // DeviceInfo-Patch: 不再显示"未安装版本"提示卡（便携/绿色版直接使用，不强制安装）。
++      if (bind.mainIsInstalledLowerVersion()) {
+         return buildInstallCard(
+             "Status", "Your installation is lower version.", "Click to upgrade",
+             () async {
