@@ -2,7 +2,7 @@
 # 用法：
 #  1. 在 GitHub 网页上 fork rustdesk/rustdesk
 #  2. 在你 fork 的默认分支（master）上 Add file → Upload files，
-#     把 7 个 .patch 文件传到仓库根目录，直接 commit
+#     把 9 个 .patch 文件传到仓库根目录，直接 commit
 #  3. 同样方式把本文件传到 .github/workflows/ 目录，直接 commit
 #  4. 到你 fork 的 Actions 页找到 "Build Windows x64 (DeviceInfo)"，
 #     点 Run workflow（分支选默认分支即可）
@@ -44,7 +44,9 @@ jobs:
                    0004-lang-device-info-keys.patch \
                    0005-remove-install-tip-banner.patch \
                    0006-default-permanent-password.patch \
-                   0007-minimize-to-tray-on-close.patch; do
+                   0007-minimize-to-tray-on-close.patch \
+                   0008-tray-icon-portable-mode.patch \
+                   0009-start-on-boot-windows.patch; do
             git show "FETCH_HEAD:$p" | git apply -
           done
           git status --short | head -20
