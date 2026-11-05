@@ -67,10 +67,10 @@ index 8473e38f..59955976 100644
      get_options()
  }
 diff --git a/src/platform/windows.rs b/src/platform/windows.rs
-index 206a88d0..719b0d10 100644
+index 206a88d0..e69ffca7 100644
 --- a/src/platform/windows.rs
 +++ b/src/platform/windows.rs
-@@ -4695,6 +4695,49 @@ pub fn is_cur_exe_the_installed() -> bool {
+@@ -4695,6 +4695,47 @@ pub fn is_cur_exe_the_installed() -> bool {
      path == exe.to_lowercase()
  }
  
@@ -79,7 +79,6 @@ index 206a88d0..719b0d10 100644
 +// 开机自启动：写 HKCU 下的 Run 键，用户级，不用管理员权限。
 +// 值名取程序名，值是带引号的当前 exe 全路径。
 +pub fn get_start_on_boot() -> bool {
-+    use winreg::{enums::*, RegKey};
 +    let Ok(exe) = std::env::current_exe() else {
 +        return false;
 +    };
@@ -96,7 +95,6 @@ index 206a88d0..719b0d10 100644
 +}
 +
 +pub fn set_start_on_boot(enable: bool) {
-+    use winreg::{enums::*, RegKey};
 +    if !enable && !get_start_on_boot() {
 +        return;
 +    }
@@ -109,7 +107,7 @@ index 206a88d0..719b0d10 100644
 +    if enable {
 +        if let Ok(exe) = std::env::current_exe() {
 +            let cmd = format!("\"{}\"", exe.to_string_lossy());
-+            let _ = run_key.set_value(name, cmd.as_str());
++            let _ = run_key.set_value(name, &cmd);
 +        }
 +    } else {
 +        // 只删指向自己的项，不动别人写的同名项。
