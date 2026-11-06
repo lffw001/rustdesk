@@ -46,8 +46,8 @@ jobs:
                    0006-default-permanent-password.patch \
                    0007-minimize-to-tray-on-close.patch \
                    0008-tray-icon-portable-mode.patch \
-                   0009-tray-icon-portable-mode.patch \
-                   0010-start-on-boot-windows.patch; do
+                   0009-start-on-boot-windows.patch \
+                   0010-file-transfer-no-timeout-kill.patch; do
             git show "FETCH_HEAD:$p" | git apply -
           done
           git status --short | head -20
