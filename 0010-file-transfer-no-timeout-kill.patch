@@ -1,0 +1,29 @@
+diff --git a/src/client/io_loop.rs b/src/client/io_loop.rs
+index 1b197a83..6c49c43a 100644
+--- a/src/client/io_loop.rs
++++ b/src/client/io_loop.rs
+@@ -334,7 +334,8 @@ impl<T: InvokeUiSession> Remote<T> {
+                             self.handle_local_clipboard_msg(&mut peer, _msg).await;
+                         }
+                         _ = self.timer.tick() => {
+-                            if last_recv_time.elapsed() >= SEC30 {
++                            // 上传进行中不主动断开：确认回包可能因对端磁盘慢而晚到。
++                            if last_recv_time.elapsed() >= SEC30 && self.read_jobs.is_empty() {
+                                 self.handler.msgbox("error", "Connection Error", "Timeout", "");
+                                 break;
+                             }
+diff --git a/src/server/connection.rs b/src/server/connection.rs
+index e9ea313d..ed21a2f1 100644
+--- a/src/server/connection.rs
++++ b/src/server/connection.rs
+@@ -1185,7 +1185,9 @@ impl Connection {
+                     conn.update_supported_encoding();
+                 }
+                 _ = test_delay_timer.tick() => {
+-                    if last_recv_time.elapsed() >= SEC30 {
++                    // 传输进行中不杀连接：正在发文件块即证明对端活着，
++                    // 只是应用层一时没消息；此时关闭会把未读数据变成 RST，对端报 10054。
++                    if last_recv_time.elapsed() >= SEC30 && conn.read_jobs.is_empty() {
+                         conn.on_close("Timeout", true).await;
+                         break;
+                     }
